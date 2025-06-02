@@ -1,7 +1,10 @@
+import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../ui/Button';
 import { formatCurrency } from '../../utils/helpers';
 
 function MenuItem({ pizza }) {
+  const { addItem } = useSelector(state => state.cart);
+  const dispatch = useDispatch();
   const { name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
 
   return (
@@ -25,7 +28,7 @@ function MenuItem({ pizza }) {
             </p>
           )}
 
-          <Button type="small">Add to cart</Button>
+          <Button type="small" onClick={()=> dispatch(addItem())}>Add to cart</Button>
         </div>
       </div>
     </li>
